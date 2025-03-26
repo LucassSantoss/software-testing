@@ -4,16 +4,21 @@ import java.util.Scanner;
 
 public class Chocolate {
     public int calculateTotalOfChocolates(double n, double c, int m){
+        if (n < 0 || c <= 0 || m <= 1) throw new IllegalArgumentException();
         if (c > n){
             return 0;
         } else if (c == n) {
             return 1;
         } else {
-            int r = (int) (n / c);
-            if (r >= m){
-                return r + (r / m);
+            int chocolates = (int) (n / c);
+            int embalagens = chocolates;
+            int chocolatesTrocados;
+            while (embalagens >= m){
+                chocolatesTrocados = embalagens / m;
+                chocolates += chocolatesTrocados;
+                embalagens = embalagens % m + chocolatesTrocados;
             }
-            return r;
+            return chocolates;
         }
     }
 

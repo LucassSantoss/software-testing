@@ -5,6 +5,7 @@ import java.util.List;
 
 public class StringUtils {
     public String[] substringsBetween(final String str, final String open, final String close) {
+        if (open == null || close == null) throw new IllegalArgumentException();
         if (str == null || open.isEmpty() || close.isEmpty()) {
             return null;
         }
